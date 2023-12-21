@@ -1,6 +1,6 @@
 param(
     # overwrite upstream param
-    [String]$upstream = "wmredmon/Scooperino:main"
+    [String]$upstream = "wmredmon/Scooperino:master"
 )
 
 if (!$env:SCOOP_HOME) { $env:SCOOP_HOME = Convert-Path (scoop prefix scoop) }
