@@ -1,33 +1,31 @@
 {
-    "version": "3.0.0-preview.22",
-    "description": "The audio player that keeps it simple, written using Electron, Angular and Typescript.",
-    "homepage": "https://github.com/digimezzo/dopamine",
-    "license": "GPL-3.0-only",
+    "version": "3.0.0-preview.23",
+    "homepage": "https://digimezzo.github.io/site/",
+    "description": "A continuation of the elegant audio player which tries to make organizing and listening to music as simple and pretty as possible.",
+    "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/digimezzo/dopamine/releases/download/v3.0.0-preview22/Dopamine-3.0.0-preview.22.exe#/dl.7z",
-            "hash": "f5d1c377d852d22c4ff0be648e4c42cfe2c7e358eb67d74dd66b9ca366fb5191"
+            "url": "https://github.com/digimezzo/dopamine/releases/download/v3.0.0-preview.23/Dopamine-3.0.0-preview.23.exe#/dl.7z",
+            "hash": "377d90d23c008c5a518dba96f44a816befac1334694c1a435b11d8cdefefc539"
         }
     },
-    "pre_install": [
-        "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\" -Removal",
-        "Remove-Item \"$dir\\`$*\", \"$dir\\Uninst*\" -Recurse"
-    ],
+    "extract_dir": "$PLUGINSDIR",
+    "pre_install": "Expand-7zipArchive \"$dir\\app-64.7z\" \"$dir\" -Removal",
     "shortcuts": [
         [
             "Dopamine.exe",
-            "Dopamine"
+            "Dopamine 3"
         ]
     ],
     "checkver": {
         "url": "https://api.github.com/repos/digimezzo/dopamine/releases",
-        "regex": "Dopamine-(?<major>[\\d.]+)-preview\\.(?<build>\\d+)",
-        "replace": "${major}-preview.${build}"
+        "jsonpath": "$..assets..browser_download_url",
+        "regex": "v([\\w.-]+)/Dopamine-(?<Version>[\\w.-]+)\\.exe"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/digimezzo/dopamine/releases/download/v$matchMajor-preview$matchBuild/Dopamine-$matchMajor-preview.$matchBuild.exe#/dl.7z"
+                "url": "https://github.com/digimezzo/dopamine/releases/download/v$version/Dopamine-$matchVersion.exe#/dl.7z"
             }
         }
     }
